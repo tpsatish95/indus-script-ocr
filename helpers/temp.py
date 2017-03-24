@@ -12,8 +12,10 @@ class TemporaryDirectory(object):
 
 
 class TemporaryFile(object):
-    def __init__(self):
+    def __init__(self, ext=""):
         temp_file = tempfile.NamedTemporaryFile(delete=False)
+        temp_file.name = "".join([temp_file.name, ext])
+
         self.fd = temp_file
         self.name = temp_file.name
 

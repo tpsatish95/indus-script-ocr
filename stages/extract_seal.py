@@ -43,8 +43,7 @@ def crop_white(image_path):
         image_g = ndimage.gaussian_filter(image_sci, 3.0)
         labeled, _ = ndimage.label(image_g > threshold)
 
-        temp_conv = TemporaryFile()
-        temp_conv.name = temp_conv.name + ".png"
+        temp_conv = TemporaryFile(".png")
 
         plt.imsave(temp_conv.name, labeled)
         image_cv = cv2.imread(temp_conv.name)
@@ -59,19 +58,22 @@ def crop_white(image_path):
 
         x, y, w, h = cv2.boundingRect(screenCnt)
         if w * h > (image_sci.shape[0] * image_sci.shape[1]) * 0.60:
-            temp_crop = TemporaryFile()
-            temp_crop.name = temp_crop.name + ".tif"
+            temp_crop = TemporaryFile(".tif")
             plt.imsave(temp_crop.name, image_sci[y:y + h, x:x + w])
 
             image_pil = Image.open(temp_crop.name)
             temp_crop.cleanup()
             output = trim(image_pil)
             if output is not None:
-                return output
+                temp_output = TemporaryFile(".tif")
+                output.save(temp_output)
+                return temp_output
         elif threshold == 200:
             image_pil = Image.open(image_path)
             output = trim(image_pil)
             if output is not None:
-                return output
+                temp_output = TemporaryFile(".tif")
+                output.save(temp_output)
+                return temp_output
         else:
             threshold = 200
