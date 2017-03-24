@@ -1,9 +1,9 @@
 import sys
 
-from stages import bg_crop
+from stages import extract_seal
 
 
 if __name__ == '__main__':
     input_artifact_image_path = sys.argv[1]
 
-    bg_crop.crop_white(input_artifact_image_path)
+    seal = extract_seal.crop_white(input_artifact_image_path)
