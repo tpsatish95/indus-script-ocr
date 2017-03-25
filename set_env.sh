@@ -2,6 +2,7 @@
 
 # paths
 export CAFFE_PATH=/root/caffe/build/tools/caffe
+export TEXT_NOTEXT_MODELS_DIR=./lib/models/text-notext
 
 # gpu computations switch (1-> GPU Computations and 0-> CPU Computations)
 export IS_GPU=1
