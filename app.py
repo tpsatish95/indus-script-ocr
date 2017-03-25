@@ -30,7 +30,6 @@ def get_new_image_dimensions(image):
     new_height = int(new_size * height / width)
     new_width = new_size
 
-
     return new_width, new_height
 
 
@@ -39,6 +38,7 @@ def process(image_path):
     new_width, new_height = get_new_image_dimensions(seal)
 
     candidate_regions = region_proposal.region_search.get_candidate_regions(seal, new_width, new_height)
+    grouped_regions = region_proposal.region_grouping.group_candidate_regions(candidate_regions, new_width, new_height)
 
 
 if __name__ == "__main__":
