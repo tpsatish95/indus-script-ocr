@@ -3,7 +3,7 @@ import sys
 import skimage.io
 
 from helpers import logger
-from stages import region_proposal
+from stages import region_proposal, text_region_extraction
 
 LOGGER = logger.create_logger(__name__)
 
@@ -39,6 +39,8 @@ def process(image_path):
 
     candidate_regions = region_proposal.region_search.get_candidate_regions(seal, new_width, new_height)
     grouped_regions = region_proposal.region_grouping.group_candidate_regions(candidate_regions, new_width, new_height)
+    text_regions, no_text_regions, both_regions = \
+        text_region_extraction.region_classification.process_regions(seal, grouped_regions, new_width, new_height)
 
 
 if __name__ == "__main__":
