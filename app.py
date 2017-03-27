@@ -1,10 +1,9 @@
-import shutil
 import sys
 
 import skimage.io
 
 from helpers import logger
-from stages import region_proposal, text_region_extraction
+from stages import region_proposal, text_region_extraction, symbol_segmentation
 
 LOGGER = logger.create_logger(__name__)
 
@@ -35,10 +34,13 @@ def get_new_image_dimensions(image):
 
 
 def get_text_regions(seal, new_width, new_height):
+    # region_proposal
     candidate_regions = \
         region_proposal.region_search.get_candidate_regions(seal, new_width, new_height)
     grouped_regions = \
         region_proposal.region_grouping.group_candidate_regions(candidate_regions, new_width, new_height)
+
+    # text_region_extraction
     text_regions, no_text_regions, both_regions = \
         text_region_extraction.region_classification.process_regions(seal, grouped_regions, new_width, new_height)
     formulated_text_regions = \
@@ -71,12 +73,14 @@ def get_best_text_regions(seal, new_width, new_height):
             LOGGER.info("New size being tried: " + str(new_width))
 
         else:
-            return text_regions
+            return text_regions, new_width, new_height
+
 
 def process(image_path):
     seal = region_proposal.extract_seal.crop_white(image_path)
     new_width, new_height = get_new_image_dimensions(seal)
-    best_text_regions = get_best_text_regions(seal, new_width, new_height)
+    best_text_regions, updated_width, updated_height = get_best_text_regions(seal, new_width, new_height)
+    symbols = symbol_segmentation.get_symbols(seal, best_text_regions, updated_width, updated_height)
 
 
 if __name__ == "__main__":

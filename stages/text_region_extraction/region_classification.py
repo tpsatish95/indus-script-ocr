@@ -13,7 +13,7 @@ LOGGER = logger.create_logger(__name__)
 
 def get_region_crops(image, grouped_regions, new_width, new_height):
     img = skimage.io.imread(image.name)[:, :, :3]
-    if not (new_height == len(img) and new_height == len(img[0])):
+    if not (new_height == len(img) and new_width == len(img[0])):
         img = skimage.transform.resize(img, (new_height, new_width))
 
     region_coords = list()
