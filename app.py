@@ -37,10 +37,14 @@ def process(image_path):
     seal = region_proposal.extract_seal.crop_white(image_path)
     new_width, new_height = get_new_image_dimensions(seal)
 
-    candidate_regions = region_proposal.region_search.get_candidate_regions(seal, new_width, new_height)
-    grouped_regions = region_proposal.region_grouping.group_candidate_regions(candidate_regions, new_width, new_height)
+    candidate_regions = \
+        region_proposal.region_search.get_candidate_regions(seal, new_width, new_height)
+    grouped_regions = \
+        region_proposal.region_grouping.group_candidate_regions(candidate_regions, new_width, new_height)
     text_regions, no_text_regions, both_regions = \
         text_region_extraction.region_classification.process_regions(seal, grouped_regions, new_width, new_height)
+    formulated_text_regions = \
+        text_region_extraction.text_region_formulation.process_regions(text_regions, no_text_regions, both_regions, new_width, new_height)
 
 
 if __name__ == "__main__":
