@@ -200,6 +200,6 @@ def get_symbols(image, text_regions, updated_width, updated_height):
     symbols_dir = TemporaryDirectory()
 
     for i, symbol in enumerate(symbols):
-        skimage.io.imsave(os.path.join(symbols_dir.name, i + ".jpg"), symbol[1])
+        skimage.io.imsave(os.path.join(symbols_dir.name, str(i) + ".jpg"), symbol[1])
 
     return symbols_dir
