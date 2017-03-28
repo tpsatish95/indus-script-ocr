@@ -3,7 +3,7 @@ import sys
 import skimage.io
 
 from helpers import logger
-from stages import region_proposal, text_region_extraction, symbol_segmentation
+from stages import region_proposal, text_region_extraction, symbol_segmentation, symbol_classification
 
 LOGGER = logger.create_logger(__name__)
 
@@ -81,6 +81,9 @@ def process(image_path):
     new_width, new_height = get_new_image_dimensions(seal)
     best_text_regions, updated_width, updated_height = get_best_text_regions(seal, new_width, new_height)
     symbols = symbol_segmentation.get_symbols(seal, best_text_regions, updated_width, updated_height)
+    symbol_sequence = symbol_classification.process_symbols(symbols)
+
+    print([s[1] for s in symbol_sequence])
 
 
 if __name__ == "__main__":
