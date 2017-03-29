@@ -29,7 +29,7 @@ def get_symbol_classifications(symbols):
 
     classifier = caffe.Classifier(os.path.join(os.environ["JAR_NOJAR_MODELS_DIR"], "deploy.prototxt"),
                                   os.path.join(os.environ["JAR_NOJAR_MODELS_DIR"], "weights.caffemodel"),
-                                  image_dims=[32, 32],
+                                  image_dims=[64, 64],
                                   raw_scale=255.0)
 
     LOGGER.info("Classifying " + len(symbols) + " inputs.")

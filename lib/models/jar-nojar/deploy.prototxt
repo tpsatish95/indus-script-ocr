@@ -3,8 +3,8 @@ name: "indus"
 input: "data"
 input_dim: 1
 input_dim: 1
-input_dim: 32
-input_dim: 32
+input_dim: 64
+input_dim: 64
 
 layers {
   name: "conv1"
@@ -91,9 +91,8 @@ layers {
   }
 }
 layers {
-  name: "loss"
-  type: SOFTMAX_LOSS
+  name: "prob"
+  type: SOFTMAX
   bottom: "ip2"
-  bottom: "label"
-  top: "loss"
+  top: "prob"
 }

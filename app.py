@@ -83,7 +83,7 @@ def process(image_path):
     symbols = symbol_segmentation.get_symbols(seal, best_text_regions, updated_width, updated_height)
     symbol_sequence = symbol_classification.process_symbols(symbols)
 
-    print([s[1] for s in symbol_sequence])
+    LOGGER.info("The symbol sequence: " + str([s[1] for s in symbol_sequence]))
 
 
 if __name__ == "__main__":
