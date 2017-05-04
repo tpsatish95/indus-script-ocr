@@ -10,6 +10,7 @@ RUN conda install -y opencv
 WORKDIR /root/workspace/
 
 # install python requirements
+COPY requirements.txt /root/workspace/requirements.txt
 RUN pip install -r requirements.txt
 
 # launch command line

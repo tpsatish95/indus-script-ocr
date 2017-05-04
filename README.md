@@ -13,6 +13,13 @@ View our research article titled "__Deep Learning the Indus Script__" arXived at
 - [SBS Radio, Australia](http://www.sbs.com.au/yourlanguage/tamil/en/content/app-decipher-ancient-symbols?language=en)
 
 
+# Deploying the app
+
+- To run the app
+  - Build the docker image: `docker build -t indus-script-ocr:latest .`
+  - To launch a docker container: `docker run -it -v "$PWD":/root/workspace --rm --env-file app.env --name indus-script-ocr-service indus-script-ocr:latest`
+
+
 ## Citation
 
 Please cite `indus-script-ocr` in your publications if it helps your research:
