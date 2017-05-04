@@ -15,9 +15,14 @@ View our research article titled "__Deep Learning the Indus Script__" arXived at
 
 # Deploying the app
 
-- To run the app
-  - Build the docker image: `docker build -t indus-script-ocr:latest .`
-  - To launch a docker container: `docker run -it -v "$PWD":/root/workspace --rm --env-file app.env --name indus-script-ocr-service indus-script-ocr:latest`
+- Setup the GPU machine to run the service,
+  - Install latest nvidia drivers, from `http://www.geforce.com/drivers`
+  - Install the nvidia-docker plug-in over docker, from `https://github.com/NVIDIA/nvidia-docker/releases`
+  - Make sure you have `git-lfs` installed (https://git-lfs.github.com/)
+
+- Launch the service,
+  - Build the docker image: `nvidia-docker build --no-cache=true -t indus-script-ocr:latest .`
+  - To launch a docker container: `nvidia-docker run -it -v "$PWD":/root/workspace --rm --env-file app.env --name indus-script-ocr-service indus-script-ocr:latest`
 
 
 ## Citation
