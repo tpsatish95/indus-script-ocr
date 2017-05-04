@@ -41,7 +41,7 @@ def get_predictions(region_crops):
                                   raw_scale=255.0,
                                   channel_swap=[2, 1, 0])
 
-    LOGGER.info("Classifying " + len(region_crops) + " inputs.")
+    LOGGER.info("Classifying " + str(len(region_crops)) + " inputs.")
 
     predictions = classifier.predict(region_crops)
 

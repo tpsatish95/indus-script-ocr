@@ -32,7 +32,7 @@ def get_symbol_classifications(symbols):
                                   image_dims=[64, 64],
                                   raw_scale=255.0)
 
-    LOGGER.info("Classifying " + len(symbols) + " inputs.")
+    LOGGER.info("Classifying " + str(len(symbols)) + " inputs.")
 
     predictions = classifier.predict([s[1] for s in symbols])
 
