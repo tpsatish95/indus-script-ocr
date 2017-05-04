@@ -66,14 +66,14 @@ def crop_white(image_path):
             output = trim(image_pil)
             if output is not None:
                 temp_output = TemporaryFile(".tif")
-                output.save(temp_output)
+                output.save(temp_output.name)
                 return temp_output
         elif threshold == 200:
             image_pil = Image.open(image_path)
             output = trim(image_pil)
             if output is not None:
                 temp_output = TemporaryFile(".tif")
-                output.save(temp_output)
+                output.save(temp_output.name)
                 return temp_output
         else:
             threshold = 200

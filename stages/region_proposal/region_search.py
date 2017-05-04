@@ -11,7 +11,7 @@ def get_candidate_regions(image, width, height):
     LOGGER.info("Extracting the candidate regions ...")
     candidates = set()
 
-    stage = 0
+    stage = 1
     for sc in [350, 450, 500]:
         for sig in [0.8]:
             for mins in [30, 60, 120]:
@@ -28,7 +28,7 @@ def get_candidate_regions(image, width, height):
                         continue
 
                     # excluding regions smaller than 2000 pixels
-                    if r['size'] < 2000:
+                    if r['size'] < 2000:  # TODO: Should not be hard coded, determine from image size
                         continue
 
                     # distorted rects

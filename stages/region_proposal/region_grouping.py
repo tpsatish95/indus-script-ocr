@@ -1,5 +1,9 @@
 import numpy as np
 
+from helpers import logger
+
+LOGGER = logger.create_logger(__name__)
+
 
 def mean_rect(r):
     return (min([i[0] for i in r]), min([i[1] for i in r]), max([i[0] + i[2] for i in r]) - min([i[0] for i in r]), max([i[1] + i[3] for i in r]) - min([i[1] for i in r]))
@@ -130,8 +134,12 @@ def extend_superbox(superboxes, width, height):
 
 def group_candidate_regions(candidates, width, height):
     merged_candidates = merge(candidates, width, height)
+    LOGGER.info(merged_candidates)
     refined_merged_candidates = contains_remove(merged_candidates)
+    LOGGER.info(refined_merged_candidates)
     superboxes = draw_superbox(refined_merged_candidates)
+    LOGGER.info(superboxes)
     extended_superboxes = extend_superbox(superboxes, width, height)
+    LOGGER.info(extended_superboxes)
 
     return extended_superboxes
