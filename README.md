@@ -13,7 +13,7 @@ View our research article titled "__Deep Learning the Indus Script__" arXived at
 - [SBS Radio, Australia](http://www.sbs.com.au/yourlanguage/tamil/en/content/app-decipher-ancient-symbols?language=en)
 
 
-# Deploying the app
+## Deploying the app
 
 - Setup the GPU machine to run the service,
   - Install latest nvidia drivers, from `http://www.geforce.com/drivers`
@@ -24,6 +24,12 @@ View our research article titled "__Deep Learning the Indus Script__" arXived at
   - Build the docker image: `nvidia-docker build --no-cache=true -t indus-script-ocr:latest .`
   - To launch a docker container: `nvidia-docker run -it -v "$PWD":/root/workspace --rm --env-file app.env --name indus-script-ocr-service indus-script-ocr:latest`
 
+## Talks
+
+- **Indian Deep Learning Initiative (IDLI):** [slide deck](https://github.com/tpsatish95/talks/blob/master/Deep\%20learning\%20based\%20OCR\%20engine\%20for\%20the\%20Indus\%20script\%20-\%20IDLI\%20Talk.pdf), [video](https://www.youtube.com/watch?v=qPF1oR9yMNY}), [link](https://www.facebook.com/groups/idliai/) 
+- **ThoughtWorks Geek Night:** [slide deck](https://github.com/tpsatish95/talks/blob/master/Deep\%20learning\%20based\%20OCR\%20engine\%20for\%20the\%20Indus\%20script\%20-\%20TW\%20Geek\%20Night.pdf), [video](https://www.youtube.com/watch?v=g7v4QaCD-UQ), [link](https://twchennai.github.io/geeknight/edition-43.html) 
+- **ChennaiPy:** [link](http://chennaipy.org/may-2017-meet-minutes.html) 
+- **Anthill Inside 2017:** [proposal](https://anthillinside.talkfunnel.com/2017/15-deep-learning-based-ocr-engine-for-the-indus-scrip)
 
 ## Citation
 
